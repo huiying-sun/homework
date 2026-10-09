@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非遗皮影 - 光影传承</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", SimSun, sans-serif;
+        }
+        body {
+            background-color: #f8f5ee;
+            color: #333;
+        }
+        /* 导航栏 */
+        nav {
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 150px;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap:8px;
+            font-weight:bold;
+            color:#7b241c;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color:#333;
+            margin:0 10px;
+            font-size:14px;
+        }
+        .nav-btn {
+            background-color:#a82828;
+            color:white;
+            border:none;
+            padding:6px 14px;
+            border-radius:4px;
+        }
+        /* 头部banner */
+        .banner {
+            height: 520px;
+            background: url('https://img1.baidu.com/it/u=3842274118,3204021039&fm=253&fmt=auto&app=138&f=JPEG?w=1200&h=600') center/cover no-repeat;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            padding-left:150px;
+            color:#222;
+        }
+        .banner h1 {
+            font-size:64px;
+            font-family:STKaiti;
+        }
+        .banner p{
+            margin:10px 0;
+            font-size:18px;
+        }
+        /* 通用板块标题 */
+        .section-title{
+            text-align:center;
+            margin:60px 0 30px;
+        }
+        .section-title h2{
+            font-size:22px;
+            font-weight:normal;
+        }
+        .section-title hr{
+            width:60px;
+            margin:8px auto;
+            border:1px solid #996633;
+        }
+        /* 皮影文化速览 三卡片 */
+        .card-row3{
+            width:70%;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:25px;
+        }
+        .info-card{
+            background:#fff;
+            padding:30px 20px;
+            text-align:center;
+        }
+        .info-card .icon{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            border:1px solid #996633;
+            margin:0 auto 15px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#996633;
+        }
+        .info-card h3{
+            font-size:16px;
+            margin-bottom:10px;
+        }
+        .info-card p{
+            font-size:12px;
+            color:#666;
+            margin-bottom:12px;
+        }
+        .info-card a{
+            font-size:12px;
+            color:#996633;
+            text-decoration:none;
+        }
+        /* 经典剧目 3图卡片 */
+        .play-row{
+            width:70%;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:20px;
+        }
+        .play-item{
+            background:#fff;
+            overflow:hidden;
+        }
+        .play-item img{
+            width:100%;
+            height:240px;
+            object-fit:cover;
+        }
+        .play-item .text{
+            padding:15px;
+            text-align:center;
+        }
+        .play-item h4{
+            margin-bottom:8px;
+            font-size:15px;
+        }
+        .play-item p{
+            font-size:11px;
+            color:#666;
+        }
+        /* 各地流派 2行2列 */
+        .style-row{
+            width:70%;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+        .style-item{
+            background:#fff;
+            overflow:hidden;
+            margin-bottom:20px;
+        }
+        .style-item img{
+            width:100%;
+            height:280px;
+            object-fit:cover;
+        }
+        .style-item .text{
+            padding:15px;
+        }
+        .style-item h4{
+            font-size:15px;
+            margin-bottom:8px;
+        }
+        .style-item p{
+            font-size:12px;
+            color:#666;
+        }
+        /* 页脚 */
+        footer{
+            background-color:#222;
+            color:#ccc;
+            padding:40px 150px;
+            margin-top:60px;
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr 1fr;
+            gap:20px;
+            font-size:13px;
+        }
+        .footer-col h4{
+            color:#fff;
+            margin-bottom:15px;
+        }
+        .footer-col a{
+            display:block;
+            color:#ccc;
+            text-decoration:none;
+            margin:6px 0;
+        }
+        .copyright{
+            background:#111;
+            color:#888;
+            text-align:center;
+            padding:12px;
+            font-size:12px;
+        }
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<nav>
+    <div class="nav-logo">
+        <span>皮影非遗 · 光影传承</span>
+    </div>
+    <div class="nav-links">
+        <a href="#">首页</a>
+        <a href="#">文化介绍</a>
+        <a href="#">非遗传承人</a>
+        <a href="#">非遗活动</a>
+        <a href="#">联系我们</a>
+        <a href="#">🔍</a>
+        <button class="nav-btn">参观预约</button>
+    </div>
+</nav>
+
+<!--Banner头部大图-->
+<div class="banner">
+    <h1>非遗皮影</h1>
+    <p>一口述千年 一影传古今</p>
+    <p>非遗传承｜匠心独运｜影中乾坤｜传承不息</p>
+</div>
+
+<!--皮影文化速览板块-->
+<div class="section-title">
+    <h2>皮影文化速览</h2>
+    <hr>
+</div>
+<div class="card-row3">
+    <div class="info-card">
+        <div class="icon">📜</div>
+        <h3>皮影起源</h3>
+        <p>穿越千年时光，探寻皮影艺术的历史脉络与发展。</p>
+        <a href="#">了解更多 →</a>
+    </div>
+    <div class="info-card">
+        <div class="icon">🎨</div>
+        <h3>皮影工艺</h3>
+        <p>从选皮到雕刻，感受皮影制作精巧繁复手工技艺。</p>
+        <a href="#">了解更多 →</a>
+    </div>
+    <div class="info-card">
+        <div class="icon">🎭</div>
+        <h3>皮影流派</h3>
+        <p>汇集各地特色，领略不同地域的皮影艺术特色。</p>
+        <a href="#">了解更多 →</a>
+    </div>
+</div>
+
+<!--经典剧目回顾板块-->
+<div class="section-title">
+    <h2>经典剧目回顾</h2>
+    <hr>
+</div>
+<div class="play-row">
+    <div class="play-item">
+        <img src="https://img0.baidu.com/it/u=2278411201,2484202284&fm=253&fmt=auto?w=600&h=400" alt="白蛇传">
+        <div class="text">
+            <h4>《白蛇传》</h4>
+            <p>一段家喻户晓的千年绝恋，光影间诉说缠绵。</p>
+        </div>
+    </div>
+    <div class="play-item">
+        <img src="https://img2.baidu.com/it/u=2521720048,1281081114&fm=253&fmt=auto?w=600&h=400" alt="三国演义">
+        <div class="text">
+            <h4>《三国演义》</h4>
+            <p>金戈铁马，乱世江山，方寸幕布上演英雄史诗。</p>
+        </div>
+    </div>
+    <div class="play-item">
+        <img src="https://img2.baidu.com/it/u=1813711418,2904140028&fm=253&fmt=auto?w=600&h=400" alt="牛郎织女">
+        <div class="text">
+            <h4>《牛郎织女》</h4>
+            <p>七夕相会，光影演绎动人的古老爱情传说。</p>
+        </div>
+    </div>
+</div>
+
+<!--各地流派板块-->
+<div class="section-title">
+    <h2>各地流派</h2>
+    <hr>
+</div>
+<div class="style-row">
+    <div class="style-item">
+        <img src="https://img2.baidu.com/it/u=1287740408,224244401&fm=253&fmt=auto?w=700&h=400" alt="陕西皮影">
+        <div class="text">
+            <h4>陕西皮影</h4>
+            <p>中国皮影的发祥地，造型精美，唱腔高亢，底蕴厚重。</p>
+        </div>
+    </div>
+    <div class="style-item">
+        <img src="https://img1.baidu.com/it/u=300311410,1840040404&fm=253&fmt=auto?w=700&h=400" alt="河北唐山皮影">
+        <div class="text">
+            <h4>河北唐山皮影</h4>
+            <p>唱腔婉转细腻，造型精巧，是北方皮影代表。</p>
+        </div>
+    </div>
+    <div class="style-item">
+        <img src="https://img0.baidu.com/it/u=2784114440,3114144108&fm=253&fmt=auto?w=700&h=400" alt="湖南皮影">
+        <div class="text">
+            <h4>湖南皮影</h4>
+            <p>造型活泼夸张，动作细腻灵动，充满民间生活气息。</p>
+        </div>
+    </div>
+    <div class="style-item">
+        <img src="https://img2.baidu.com/it/u=1312411414,2224411218&fm=253&fmt=auto?w=700&h=400" alt="甘肃皮影">
+        <div class="text">
+            <h4>甘肃皮影</h4>
+            <p>线条粗犷有力，人物大气古朴，保留古老传统。</p>
+        </div>
+    </div>
+</div>
+
+<!--页脚-->
+<footer>
+    <div class="footer-col">
+        <h4>皮影非遗 · 光影传承</h4>
+        <p>探索光影艺术，传承非遗匠心。</p>
+    </div>
+    <div class="footer-col">
+        <h4>快速链接</h4>
+        <a href="#">文化介绍</a>
+        <a href="#">经典剧目</a>
+        <a href="#">传承人</a>
+    </div>
+    <div class="footer-col">
+        <h4>法律与保障</h4>
+        <a href="#">非遗保护中心</a>
+        <a href="#">隐私政策</a>
+        <a href="#">版权信息</a>
+    </div>
+    <div class="footer-col">
+        <h4>联系我们</h4>
+        <p>地址：中国·河北皮影文化展示厅</p>
+        <p>电话：400-123-4567</p>
+        <a href="#">WeChat</a>
+        <a href="#">Weibo</a>
+        <a href="#">Douyin</a>
+    </div>
+</footer>
+<div class="copyright">©2025 皮影非遗光影传承 版权所有</div>
+</body>
+</html>
