@@ -1,132 +1,710 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>皮影戏 - 非物质文化遗产</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background-color: #2c1810;
-            color: #f8f0e3;
-            line-height: 1.8;
-        }
-        header {
-            background-color: #592c1e;
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 3px solid #d4af37;
-        }
-        h1 {
-            font-size: 42px;
-            color: #ffd78c;
-            letter-spacing: 8px;
-        }
-        header p {
-            font-size: 18px;
-            margin-top:10px;
-            color:#f5e7d3;
-        }
-        nav {
-            background-color: #3f2218;
-            text-align: center;
-            padding:16px;
-        }
-        nav a {
-            color: #ffd78c;
-            text-decoration: none;
-            margin:0 18px;
-            font-size:17px;
-        }
-        nav a:hover {
-            color: #fff;
-        }
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 40px auto;
-        }
-        .box {
-            background-color: rgba(75, 40, 28, 0.75);
-            padding:30px;
-            margin-bottom:30px;
-            border-radius:12px;
-            border-left: 5px solid #d4af37;
-        }
-        h2 {
-            color:#ffd78c;
-            margin-bottom:16px;
-        }
-        .img-area{
-            text-align:center;
-            margin:20px 0;
-        }
-        .img-area img{
-            width:70%;
-            border:3px solid #d4af37;
-            border-radius:8px;
-        }
-        footer{
-            text-align:center;
-            padding:25px;
-            background:#22130d;
-            color:#c9b89c;
-            margin-top:40px;
-        }
-        ul{
-            padding-left:24px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>非遗皮影 · 光影传承</title>
+  <!-- 引入 Font Awesome 图标库（用于导航栏等图标） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== 全局重置 & 基础变量 ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-body: #f7f3ec;           /* 米白底色，类似宣纸 */
+      --bg-card: #ffffff;
+      --text-dark: #2c241e;          /* 深褐，类似墨色 */
+      --text-soft: #5b4f45;          /* 灰褐 */
+      --accent: #a5532e;            /* 皮影红褐，用于点缀 */
+      --accent-light: #d9b8a2;
+      --border-light: #e6ddd4;
+      --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 16px 30px -8px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 24px 40px -12px rgba(0, 0, 0, 0.15);
+      --radius-card: 16px;
+      --radius-img: 12px;
+      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Noto Serif SC', 'Songti SC', 'Times New Roman', serif, system-ui;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* 为了让图片更柔和，加入轻微纹理 */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.025"/></svg>');
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== 布局容器 ===== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== 顶部导航 ===== */
+    .top-nav {
+      background-color: #fefcf9;
+      border-bottom: 1px solid var(--border-light);
+      padding: 12px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #8b3e1f;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: #c4714b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      color: var(--text-soft);
+    }
+
+    .nav-actions i {
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .nav-actions i:hover {
+      color: var(--accent);
+    }
+
+    .btn-book {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(165, 83, 46, 0.25);
+    }
+
+    .btn-book:hover {
+      background: #8b3e1f;
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(165, 83, 46, 0.35);
+    }
+
+    /* ===== 主横幅 Hero ===== */
+    .hero {
+      margin: 24px 0 48px;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .hero:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .hero:hover img {
+      transform: scale(1.01);
+    }
+
+    /* ===== 通用区块标题 ===== */
+    .section-title {
+      text-align: center;
+      margin: 56px 0 32px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--text-dark);
+      display: inline-block;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--accent-light);
+      font-family: 'Noto Serif SC', 'Songti SC', serif;
+    }
+
+    /* ===== 文化速览卡片 ===== */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .overview-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      padding: 32px 20px 28px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      cursor: default;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-light);
+    }
+
+    .overview-card .icon-circle {
+      width: 64px;
+      height: 64px;
+      background: #f3ece6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .overview-card:hover .icon-circle {
+      background: var(--accent);
+      color: #fff;
+      transform: rotate(6deg) scale(1.05);
+    }
+
+    .overview-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .overview-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      line-height: 1.7;
+      padding: 0 6px;
+    }
+
+    .card-link {
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+
+    .card-link i {
+      font-size: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .card-link:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .card-link:hover i {
+      transform: translateX(4px);
+    }
+
+    /* ===== 经典剧目（三列图片卡片） ===== */
+    .opera-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    .opera-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid #f0e9e2;
+    }
+
+    .opera-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .opera-card .img-box {
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: #e8dfd6;
+    }
+
+    .opera-card .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .opera-card:hover .img-box img {
+      transform: scale(1.06);
+    }
+
+    .opera-info {
+      padding: 18px 16px 20px;
+      text-align: center;
+    }
+
+    .opera-info h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #3f342c;
+    }
+
+    .opera-info p {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* ===== 各地流派（四宫格） ===== */
+    .regions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .region-card {
+      position: relative;
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: pointer;
+      background: #2c241e;
+    }
+
+    .region-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1), filter 0.5s;
+      filter: brightness(0.9);
+    }
+
+    .region-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+
+    .region-label {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      padding: 20px 20px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      color: #fff;
+      transition: var(--transition);
+    }
+
+    .region-label h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .region-label p {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      line-height: 1.4;
+      max-width: 90%;
+    }
+
+    .region-card:hover .region-label {
+      padding-bottom: 24px;
+    }
+
+    /* ===== 页脚 ===== */
+    .footer {
+      background: #221d18;
+      color: #c9bbb0;
+      padding: 48px 0 28px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #3a322c;
+    }
+
+    .footer-col h4 {
+      color: #e8ddd4;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-col p, .footer-col ul {
+      line-height: 2;
+      list-style: none;
+      opacity: 0.8;
+    }
+
+    .footer-col ul li a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: #d9b8a2;
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.78rem;
+      opacity: 0.7;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      font-size: 1.2rem;
+    }
+
+    .social-icons i {
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .social-icons i:hover {
+      color: #d9b8a2;
+      transform: translateY(-2px);
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 900px) {
+      .overview-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .opera-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; } /* 移动端隐藏导航链接，简化 */
+      .overview-grid { grid-template-columns: 1fr 1fr; }
+      .opera-grid { grid-template-columns: 1fr 1fr; }
+      .regions-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .section-title h2 { font-size: 1.6rem; }
+      .hero { margin: 16px 0 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .overview-grid { grid-template-columns: 1fr; }
+      .opera-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 16px; }
+    }
+
+    /* 给图片增加柔和加载效果 */
+    img {
+      background: #e8dfd6;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>中国皮影戏</h1>
-        <p>光影之间，传承千年非遗文化</p>
-    </header>
-    <nav>
-        <a href="#intro">皮影简介</a>
-        <a href="#history">发展历史</a>
-        <a href="#feature">艺术特点</a>
-        <a href="#inherit">文化传承</a>
-    </nav>
-    <div class="container">
-        <div class="box" id="intro">
-            <h2>皮影简介</h2>
-            <p>皮影戏又称“影子戏”，是一种以兽皮或纸板做成人物剪影，借助灯光投射在幕布上表演故事的民间戏剧。艺人在幕后操纵皮影，搭配唱腔与配乐，演绎古今故事，是我国珍贵的非物质文化遗产。</p>
-            <div class="img-area">
-                <img src="https://img1.baidu.com/it/u=1320030301,3072032024&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" alt="皮影戏">
-            </div>
-        </div>
-        <div class="box" id="history">
-            <h2>发展历史</h2>
-            <p>皮影戏最早起源于汉代，成熟于唐宋，兴盛于清代。古时民间利用光影原理创造这种表演形式，在民间庙会、节庆广泛演出。2011年，中国皮影戏入选人类非物质文化遗产代表作名录。</p>
-            <div class="img-area">
-                <img src="https://img0.baidu.com/it/u=2972241410,178220411&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=500" alt="皮影人物">
-            </div>
-        </div>
-        <div class="box" id="feature">
-            <h2>艺术特点</h2>
-            <ul>
-                <li>皮影造型：镂空雕刻，线条细腻，色彩艳丽，人物脸谱极具特色</li>
-                <li>表演形式：灯影结合，一人可操控多个皮影角色</li>
-                <li>配乐唱腔：融合各地民间小调，地域风格丰富</li>
-            </ul>
-            <div class="img-area">
-                <img src="https://img0.baidu.com/it/u=3080101304,1140110101&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500" alt="皮影雕刻">
-            </div>
-        </div>
-        <div class="box" id="inherit">
-            <h2>文化传承</h2>
-            <p>现代影视发展让传统皮影戏受到冲击。如今各地开设皮影传习馆，结合短视频、动画创新演绎，让古老光影艺术重新走进年轻人的视野。</p>
-        </div>
+  <!-- ===== 顶部导航 ===== -->
+  <header class="top-nav">
+    <div class="container nav-inner">
+      <div class="logo-area">
+        <span class="logo-icon"><i class="fas fa-mask"></i></span>
+        <span>非遗皮影 · 光影传承</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#">文化介绍</a>
+        <a href="#">经典剧目</a>
+        <a href="#">传承人</a>
+        <a href="#">非遗动态</a>
+        <a href="#">联系我们</a>
+      </nav>
+      <div class="nav-actions">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-globe"></i>
+        <button class="btn-book">在线预约</button>
+      </div>
     </div>
-    <footer>
-        <p>非遗文化网页作业 | 皮影戏 仅供学习使用</p>
-    </footer>
+  </header>
+
+  <main class="container">
+    <!-- ===== 主横幅 ===== -->
+    <section class="hero">
+      <img 
+        src="https://images.unsplash.com/photo-1535202925329-4b9b37912e6d?w=1200&h=600&fit=crop&auto=format&q=80" 
+        alt="非遗皮影 · 光影传承 — 皮影戏表演场景"
+      >
+    </section>
+
+    <!-- ===== 皮影文化速览 ===== -->
+    <section>
+      <div class="section-title">
+        <h2>皮影文化速览</h2>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="icon-circle"><i class="fas fa-scroll"></i></div>
+          <h3>皮影起源</h3>
+          <p>穿越千年时光，探寻皮影艺术的历史脉络与文化根基。</p>
+          <a href="#" class="card-link">了解更多 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="overview-card">
+          <div class="icon-circle"><i class="fas fa-cut"></i></div>
+          <h3>皮影工艺</h3>
+          <p>从选皮到雕刻，解读皮影制作八大步骤与手工技艺。</p>
+          <a href="#" class="card-link">了解更多 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="overview-card">
+          <div class="icon-circle"><i class="fas fa-theater-masks"></i></div>
+          <h3>皮影流派</h3>
+          <p>主流流派特色，领略各地不同皮影的艺术表现风格。</p>
+          <a href="#" class="card-link">了解更多 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 经典剧目回顾 ===== -->
+    <section>
+      <div class="section-title">
+        <h2>经典剧目回顾</h2>
+      </div>
+      <div class="opera-grid">
+        <!-- 白蛇传 -->
+        <div class="opera-card">
+          <div class="img-box">
+            <img 
+              src="https://images.unsplash.com/photo-1580136608263-5f7a5d5d5d5d?w=400&h=500&fit=crop&auto=format&q=80" 
+              alt="白蛇传皮影"
+            >
+          </div>
+          <div class="opera-info">
+            <h3>《白蛇传》</h3>
+            <p>一段人妖殊别的千年恋恋，光影间的缱绻缠绵。</p>
+          </div>
+        </div>
+        <!-- 三国演义 -->
+        <div class="opera-card">
+          <div class="img-box">
+            <img 
+              src="https://images.unsplash.com/photo-1618556450991-2f1af64e8191?w=400&h=500&fit=crop&auto=format&q=80" 
+              alt="三国演义皮影"
+            >
+          </div>
+          <div class="opera-info">
+            <h3>《三国演义》</h3>
+            <p>金戈铁马，指点江山，刀影里上演群雄逐鹿。</p>
+          </div>
+        </div>
+        <!-- 牛郎织女 -->
+        <div class="opera-card">
+          <div class="img-box">
+            <img 
+              src="https://images.unsplash.com/photo-1590076215667-2f9e7c5e6b3f?w=400&h=500&fit=crop&auto=format&q=80" 
+              alt="牛郎织女皮影"
+            >
+          </div>
+          <div class="opera-info">
+            <h3>《牛郎织女》</h3>
+            <p>七夕鹊桥会，皮影演绎人间的眷恋与星河之约。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 各地流派 ===== -->
+    <section>
+      <div class="section-title">
+        <h2>各地流派</h2>
+      </div>
+      <div class="regions-grid">
+        <!-- 陕西皮影 -->
+        <div class="region-card">
+          <img 
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&h=340&fit=crop&auto=format&q=80" 
+            alt="陕西皮影"
+          >
+          <div class="region-label">
+            <h3>陕西皮影</h3>
+            <p>表演细腻，唱腔丰富，雕刻精美，光影效果尤为考究。</p>
+          </div>
+        </div>
+        <!-- 唐山皮影 -->
+        <div class="region-card">
+          <img 
+            src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=600&h=340&fit=crop&auto=format&q=80" 
+            alt="唐山皮影"
+          >
+          <div class="region-label">
+            <h3>唐山皮影</h3>
+            <p>唱腔优美，以掐嗓演唱为特色，影人造型生动传神。</p>
+          </div>
+        </div>
+        <!-- 湖南皮影 -->
+        <div class="region-card">
+          <img 
+            src="https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?w=600&h=340&fit=crop&auto=format&q=80" 
+            alt="湖南皮影"
+          >
+          <div class="region-label">
+            <h3>湖南皮影</h3>
+            <p>融合地方戏曲，造型夸张，色彩鲜艳，极具乡土气息。</p>
+          </div>
+        </div>
+        <!-- 山东皮影 -->
+        <div class="region-card">
+          <img 
+            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=340&fit=crop&auto=format&q=80" 
+            alt="山东皮影"
+          >
+          <div class="region-label">
+            <h3>山东皮影</h3>
+            <p>影人形体较大，动作粗犷有力，唱腔高亢激昂。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>非遗皮影 · 光影传承</h4>
+          <p>探索光影艺术，传承非遗匠心。<br>让千年皮影在当代焕发新生。</p>
+        </div>
+        <div class="footer-col">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="#">文化介绍</a></li>
+            <li><a href="#">经典剧目</a></li>
+            <li><a href="#">传承人</a></li>
+            <li><a href="#">非遗动态</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>法律与帮助</h4>
+          <ul>
+            <li><a href="#">非遗保护中心</a></li>
+            <li><a href="#">隐私政策</a></li>
+            <li><a href="#">版权信息</a></li>
+            <li><a href="#">意见反馈</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>联系我们</h4>
+          <ul>
+            <li>地址：中国·北京市朝阳区文化园88号</li>
+            <li>电话：400-123-4567</li>
+            <li>邮箱：piying@feiyi.com</li>
+          </ul>
+          <div class="social-icons" style="margin-top: 16px;">
+            <i class="fab fa-weixin"></i>
+            <i class="fab fa-weibo"></i>
+            <i class="fab fa-douyin"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 非遗皮影网 · 版权所有</span>
+        <span>让光影留住时光</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
